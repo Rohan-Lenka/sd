@@ -1,0 +1,7 @@
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+echo "Running format check..."
+yarn format || exit 1
+if [ "$branch_name" = "dev" ]; then
+  echo "Running env setup for dev branch..."
+  yarn env dev
+fi
